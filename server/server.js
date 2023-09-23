@@ -7,18 +7,32 @@ const PORT = 8080;
 const mongoUri = process.env.DB_CONNECTION_STRING
 const mongoClient = new MongoClient(mongoUri);
 
+app.use(express.json({limit:'50mb'}))
 app.use(cors())
 
-app.get("/api/home", async (req, res) => {
+app.get("/api/get-all-characters", async (req, res) => {
+    console.log(`GET /api/get-all-characters`)
     try {
-        const database = mongoClient.db('sample_mflix');
-        const movies = database.collection('movies');
-        const query = { title: 'Back to the Future' };
-        const movie = await movies.findOne(query);
-        console.log(movie);
-        res.json({movie})
+        await mongoClient.connect()
+        const database = mongoClient.db('rick_and_morty');
+        const characters = database.collection('characters');
+        const query = { name: "Rick Sanchez"}
+        const found = await characters.find(query).toArray();
+        res.json({characters: found})
     } finally {
         await mongoClient.close();
+    }
+})
+
+app.post("/api/mongo/load-characters", async (req, res) => {
+    console.log(`POST /api/mongo/load-characters`)
+    try {
+        await mongoClient.connect()
+        const database = mongoClient.db('rick_and_morty');
+        const characters = database.collection('characters');
+        await characters.insertMany(req.body.allCharacters)
+    } finally {
+        await mongoClient.close()
     }
 })
 
