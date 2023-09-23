@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import EpisodeCompareContainer from '../EpisodeCompare/index';
 import FilterBy from '../FilterBy/index';
 import GridContainer from '../GridContainer/index'
 import SearchBar from '../SearchBar/index'
@@ -10,7 +11,7 @@ function HomePage({characters}:any) {
   const [filterCondition, setFilterCondition] = useState("all")
   const [isSearched, setIsSearched] = useState(false)
   const [searchedValue, setSearchedValue] = useState("")
-  
+  const [selectedCharacters, setSelectedCharacters] = useState([]) 
 
   useEffect(() => {
     if(isSearched) {
@@ -46,6 +47,10 @@ function HomePage({characters}:any) {
     }
   }, [filterCondition, completeList, isSearched, searchedValue])
 
+  useEffect(() => {
+    console.log(selectedCharacters)
+  }, [selectedCharacters])
+
   return (
     <>
       <div>
@@ -53,8 +58,10 @@ function HomePage({characters}:any) {
       </div>
       <div>
         <FilterBy setFilterCondition={setFilterCondition}/>
-        <GridContainer characters={shownCharacters} />
+        <GridContainer completeList={completeList} characters={shownCharacters} setSelectedCharacters={setSelectedCharacters} selectedCharacters={selectedCharacters} />
       </div>
+      <EpisodeCompareContainer selectedCharacters={selectedCharacters} />
+      {/* <EpisodeCompareContainer selectedCharacters={[{name: "Marcos Stricker", image: "https://rickandmortyapi.com/api/character/avatar/1.jpeg", species: "Human", type: "Human aswell", status: "Alive", imageSize: "24"}]} /> */}
     </>
   )
 }

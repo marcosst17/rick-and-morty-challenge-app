@@ -2,3 +2,15 @@
 @tailwind components;
 @tailwind utilities;
 
+.episode-container {
+  background: red;
+  z-index: 2;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+}
+
+.episode-container .character-card {
+  transform: scale(0.6);
+}

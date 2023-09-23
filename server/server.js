@@ -16,8 +16,20 @@ app.get("/api/get-all-characters", async (req, res) => {
         await mongoClient.connect()
         const database = mongoClient.db('rick_and_morty');
         const characters = database.collection('characters');
-        const query = { name: "Rick Sanchez"}
-        const found = await characters.find(query).toArray();
+        const found = await characters.find().toArray();
+        res.json({characters: found})
+    } finally {
+        await mongoClient.close();
+    }
+})
+
+app.get("/api/get-characters-range", async (req, res) => {
+    console.log(`GET /api/get-characters-range`)
+    try {
+        await mongoClient.connect()
+        const database = mongoClient.db('rick_and_morty');
+        const characters = database.collection('characters');
+        const found = await characters.find().limit(10).toArray();
         res.json({characters: found})
     } finally {
         await mongoClient.close();
