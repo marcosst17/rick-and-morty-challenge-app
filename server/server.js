@@ -23,13 +23,28 @@ app.get("/api/get-all-characters", async (req, res) => {
     }
 })
 
+app.get("/api/search-characters", async (req, res) => {
+    console.log(`GET /api/search-characters`)
+    try {
+        await mongoClient.connect()
+        const database = mongoClient.db('rick_and_morty');
+        const characters = database.collection('characters');
+        // const query = {name: new RegExp('/.*' + "rick" + '.*/i')}
+        const query = {name: {"$regex": '.*' + "rick" + '.*', "$options": "i"}}
+        const found = await characters.find(query).toArray();
+        res.json({characters: found})
+    } finally {
+        await mongoClient.close();
+    }
+})
+
 app.get("/api/get-characters-range", async (req, res) => {
     console.log(`GET /api/get-characters-range`)
     try {
         await mongoClient.connect()
         const database = mongoClient.db('rick_and_morty');
         const characters = database.collection('characters');
-        const found = await characters.find().limit(10).toArray();
+        const found = await characters.find().limit(100).toArray();
         res.json({characters: found})
     } finally {
         await mongoClient.close();
