@@ -11,6 +11,27 @@
   height: 40%;
 }
 
+.episode-open {
+  padding-bottom: 400px;
+}
+
 .episode-container .character-card {
   transform: scale(0.6);
+}
+
+.episode-container .character-holder-episodes {
+  overflow-y: auto;
+}
+
+.episode-list-container {
+  overflow-y: auto;
+  max-height: 350px;
+}
+
+.selector-disabled {
+  pointer-events:none;
+}
+
+.selector-enabled {
+  background: red;
 }

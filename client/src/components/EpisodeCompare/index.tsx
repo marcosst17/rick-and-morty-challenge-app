@@ -1,31 +1,72 @@
-import React from 'react'
+import axios from '@/node_modules/axios/index';
+import React, { useEffect, useState } from 'react'
 import CharacterCard from '../CharacterCard/index'
+import EpisodeList from './EpisodeList';
 
-function EpisodeCompareContainer({selectedCharacters}:any) {
+function EpisodeCompareContainer({selectedCharacterOne, selectedCharacterTwo}:any) {
 
-    console.log(selectedCharacters.length)
-    console.log({selectedCharacters});
+    const [combinedEpisodes, setCombinedEpisodes] = useState<any[]>([])
+    
+    useEffect(() => {
+        setCombinedEpisodes([])
+        if(selectedCharacterOne?.hasOwnProperty("id") && selectedCharacterTwo?.hasOwnProperty("id")){
+            let combined = selectedCharacterOne.episode.filter((str:string) => selectedCharacterTwo.episode.includes(str))
+            combined.forEach(async(episode:string) => {
+                const response = await axios.get(episode)
+                setCombinedEpisodes((prevState:any) => {
+                    let found = prevState.find((el:any) => el.id === prevState.id)
+                    if(found) return prevState
+                    if(!prevState || prevState?.length === 0){
+                        return [response.data]
+                    } else {
+                        return [...prevState, response.data]
+                    }
+                })
+            })
+        }
+    }, [selectedCharacterOne, selectedCharacterTwo])
 
-    if (selectedCharacters?.length > 2 || selectedCharacters?.length === 0 || !selectedCharacters){
-        console.log("here");
+    if (selectedCharacterOne?.hasOwnProperty("empty") && selectedCharacterTwo?.hasOwnProperty("empty")){
         return <></>
     }
 
     return (
         <div className='episode-container flex justify-between'>
-            <div className=''>
+            <div className=''  key={selectedCharacterOne?.id}>
                 {
-                    selectedCharacters?.length > 0 &&
-                    <CharacterCard key={selectedCharacters[0].id} id={selectedCharacters[0].id} name={selectedCharacters[0]?.name} species={selectedCharacters[0]?.species} status={selectedCharacters[0]?.status} type={selectedCharacters[0]?.type} image={selectedCharacters[0]?.image} />
+                    selectedCharacterOne?.hasOwnProperty("id") &&
+                    <div className='flex character-holder-episodes character-first'>
+                        <CharacterCard 
+                            key={selectedCharacterOne.id}
+                            character={selectedCharacterOne}
+                            opposite={selectedCharacterTwo}
+                        />
+                        <EpisodeList character={selectedCharacterOne} />
+                    </div>
                 }
             </div>
-            <div>
-                Combinacion
-            </div>
-            <div>
+            <div className={`${selectedCharacterOne?.hasOwnProperty("id") && selectedCharacterTwo?.hasOwnProperty("id") && combinedEpisodes.length > 0 ? "episode-list-container" : ""}`}>
                 {
-                    selectedCharacters?.length > 1 &&
-                    <CharacterCard key={selectedCharacters[1].id} id={selectedCharacters[1].id} name={selectedCharacters[1]?.name} species={selectedCharacters[1]?.species} status={selectedCharacters[1]?.status} type={selectedCharacters[1]?.type} image={selectedCharacters[1]?.image} />
+                    selectedCharacterOne?.hasOwnProperty("id") && selectedCharacterTwo?.hasOwnProperty("id") && combinedEpisodes.length > 0 &&
+                    combinedEpisodes.map((episode:any) => (
+                        <p key={episode.id}>
+                            {`${episode.episode} - ${episode.name} - ${episode.air_date}`}
+                        </p>
+                    ))
+                    
+                }
+            </div>
+            <div  key={selectedCharacterTwo?.id}>
+                {
+                    selectedCharacterTwo?.hasOwnProperty("id") &&
+                    <div className='flex character-holder-episodes flex-row-reverse'>
+                        <CharacterCard 
+                            key={selectedCharacterTwo.id * 4}
+                            character={selectedCharacterTwo}
+                            opposite={selectedCharacterOne}
+                        />
+                        <EpisodeList character={selectedCharacterTwo} />
+                    </div>
                 }
             </div>
         </div>

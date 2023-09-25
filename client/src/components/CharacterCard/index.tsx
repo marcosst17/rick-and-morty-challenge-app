@@ -1,47 +1,61 @@
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 
 type CharacterCardProps = {
-  name: string,
-  species: string,
-  status: string,
-  type: string,
-  image: string,
+  character:any,
   handleSelectCharacter?: (key:number) => void,
   handleUnselectCharacter?: (key:number) => void,
-  key?: number,
-  id: number,
+  selectedCharacter?:any
+  opposite:any
 }
 
-function CharacterCard({name, species, status, type, image, handleSelectCharacter, handleUnselectCharacter, id}:CharacterCardProps) {
+function CharacterCard({character, selectedCharacter, opposite, handleSelectCharacter, handleUnselectCharacter}:CharacterCardProps) {
 
   const handleSelectCharacterData = (e:any) => {
+    console.log("e.target: ", e.target);
+    console.log("e.target.checked: ", e.target.checked)
     if(e.target.checked && handleSelectCharacter){
-      handleSelectCharacter(id)
+      console.log("first if")
+      handleSelectCharacter(character.id)
     } else {
+      console.log("else");
       if(handleUnselectCharacter){
-        handleUnselectCharacter(id)
+        console.log("second if")
+        handleUnselectCharacter(character.id)
+        setChecked(false)
       }
     }
   }
 
+  const [checked, setChecked] = useState(false)
+
+  useEffect(() => {
+    if(selectedCharacter?.hasOwnProperty("id")){
+      if(selectedCharacter.id === character.id){
+        setChecked(true)
+      } else {
+        setChecked(false)
+      }
+    }
+  }, [selectedCharacter, character.id])
+
   return (
     <div className="character-card max-w-xs rounded overflow-hidden shadow-lg m-4">
-      <Image className="w-full" src={image} alt={name} width={300} height={300} priority />
+      <Image className="w-full" src={character.image} alt={character.name} width={300} height={300} priority />
       <div className="px-6 py-4">
-        <div className="font-bold text-xl mb-2">{name}</div>
+        <div className="font-bold text-xl mb-2">{character.name}</div>
         <p className="text-gray-700 text-base">
-          Species: {species}
+          Species: {character.species}
         </p>
         <p className="text-gray-700 text-base">
-          Status: {status}
+          Status: {character.status}
         </p>
       </div>
       {
         !handleSelectCharacter && !handleUnselectCharacter ? <></> 
         : 
-        <div>
-          <input type="checkbox" onChange={handleSelectCharacterData}></input>
+        <div className={`${opposite?.id === character.id ? "selector-disabled" : "selector-enabled"}`}>
+          <input checked={checked} type="checkbox" onChange={handleSelectCharacterData}></input>
         </div>
       }
       

@@ -1,8 +1,8 @@
 "use client"
-import { useRouter } from "next/navigation"
+import axios from "@/node_modules/axios/index"
 import { useState } from "react"
 
-const SearchBar = ({setSearchedValue, setIsSearched, isSearched, searchedValue}:any) => {
+const SearchBar = ({setSearchedValue, setIsSearched, isSearched, searchedValue, setSearchResult}:any) => {
 
     const [searchState, setSearchState] = useState("")
 
@@ -16,11 +16,13 @@ const SearchBar = ({setSearchedValue, setIsSearched, isSearched, searchedValue}:
         setSearchedValue("")
     }
 
-    const handleSubmit = (e:any) => {
+    const handleSubmit = async (e:any) => {
         e.preventDefault()
         setSearchedValue(searchState.toLowerCase())
         setIsSearched(true)
         setSearchState("")
+        const response = await axios.get("http://localhost:8080/api/search-characters")
+        setSearchResult(response?.data?.characters)
     }
 
     return (
