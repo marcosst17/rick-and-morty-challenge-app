@@ -1,9 +1,55 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400;1,500;1,600;1,700;1,800&display=swap');
+
+:root{
+  --card-background-color: #00ff00;
+  --card-background-color-disabled: #a1a1a1;
+}
+
+body {
+  font-family: 'Poppins', sans-serif;
+  background: #0f0c29;
+  background: -webkit-linear-gradient(to left, #0f0c29, #302b63, #24243e);
+  background: linear-gradient(to left, #0f0c29, #302b63, #24243e);
+}
+
+.character-first-grid .searchbar-main {
+  margin-left: auto;
+}
+.character-first-grid .filterby-main {
+  margin-right: auto;
+  display: flex;
+  flex-direction: column !important;
+}
+.character-first-grid .filterby-main select {
+  margin-left: 0 !important;
+}
+
+.character-second-grid .filterby-main {
+  margin-left: auto;
+  display: flex;
+  flex-direction: column !important;
+}
+.character-second-grid .filterby-main select {
+  margin-left: 0 !important;
+}
+.character-second-grid .searchbar-main {
+  margin-right: right;
+}
+
+.character-first-grid,
+.character-second-grid {
+  width: 40%;
+}
+
+.combined-grid {
+  width: 20%;
+}
 
 .episode-container {
-  background: red;
+  background: lightblue;
   z-index: 2;
   position: fixed;
   bottom: 0;
@@ -11,16 +57,26 @@
   height: 40%;
 }
 
-.episode-open {
-  padding-bottom: 400px;
-}
-
-.episode-container .character-card {
+/* .episode-container .character-card {
   transform: scale(0.6);
-}
+} */
 
 .episode-container .character-holder-episodes {
   overflow-y: auto;
+}
+
+.character-holder-episodes {
+  align-items: center;
+  flex-direction: column;
+}
+
+.character-holder-episodes .card-label {
+  min-width: 500px;
+}
+
+.character-holder-episodes .card-label-inner {
+  display: flex;
+  height: 100%;
 }
 
 .episode-list-container {
@@ -32,6 +88,69 @@
   pointer-events:none;
 }
 
-.selector-enabled {
-  background: red;
+.checked {
+  box-shadow: inset 0px 0px 140px -10px var(--card-background-color);
+}
+.card-label[aria-disabled=true] {
+  pointer-events: none;
+  box-shadow: 0px 0px 10px 3px var(--card-background-color-disabled);
+}
+
+.card-label[aria-disabled=false] {
+  cursor: pointer;
+}
+
+.card-label {
+  /* min-height: 450px; */
+  max-height: 450px;
+  background: rgb(231 231 231);
+  border-radius: 15px;
+  transition: all 1s ease-out;
+  box-shadow: none;
+}
+
+.card-label:hover {
+  box-shadow: inset 0px 0px 140px -10px var(--card-background-color);
+}
+
+/* .card-description-container {
+  background: rgb(231 231 231);
+  z-index: 2;
+  position: sticky;
+}
+ */
+.character-holder-episodes .card-label {
+  pointer-events: none;
+}
+
+.character-holder-episodes .card-label .card-description-container{
+  min-width: 300px !important;
+}
+.character-holder-episodes .card-label .card-description-container .name-container{
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.character-avatar {
+  overflow: hidden;
+  transition: transform 0.2s linear;
+}
+
+.character-avatar:hover {
+  transform: scale(1.05);
+}
+
+.compare-delete {
+  transition: transform 0.2s linear;
+  width: 50%;
+  margin: auto;
+}
+
+.compare-open-first {
+  width: 30% !important;
+  margin-right: auto;
+}
+.compare-open-second {
+  width: 30% !important;
+  margin-left: auto;
 }

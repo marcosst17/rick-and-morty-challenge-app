@@ -7,7 +7,7 @@ function FilterBy({setFilterCondition}:any) {
     }
 
   return (
-    <div className="flex items-center space-x-4 mb-4">
+    <div className="filterby-main flex items-center space-x-4">
       <label htmlFor="filter">Filter by:</label>
       <select
         id="filter"
@@ -17,6 +17,7 @@ function FilterBy({setFilterCondition}:any) {
         <option value="all">All</option>
         <option value="status:alive">Alive</option>
         <option value="status:dead">Dead</option>
+        <option value="status:unknown">Unknown</option>
         {/* Add more options as needed */}
       </select>
     </div>

@@ -25,12 +25,17 @@ app.get("/api/get-all-characters", async (req, res) => {
 
 app.get("/api/search-characters", async (req, res) => {
     console.log(`GET /api/search-characters`)
+    console.log("params", req.params)
+    console.log("body", req.body)
+    console.log("path", req.path)
+    console.log("query", req.query)
+    const { value } = req.query
     try {
         await mongoClient.connect()
         const database = mongoClient.db('rick_and_morty');
         const characters = database.collection('characters');
         // const query = {name: new RegExp('/.*' + "rick" + '.*/i')}
-        const query = {name: {"$regex": '.*' + "rick" + '.*', "$options": "i"}}
+        const query = {name: {"$regex": '.*' + value + '.*', "$options": "i"}}
         const found = await characters.find(query).toArray();
         res.json({characters: found})
     } finally {

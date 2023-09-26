@@ -21,12 +21,12 @@ const SearchBar = ({setSearchedValue, setIsSearched, isSearched, searchedValue, 
         setSearchedValue(searchState.toLowerCase())
         setIsSearched(true)
         setSearchState("")
-        const response = await axios.get("http://localhost:8080/api/search-characters")
+        const response = await axios.get(`http://localhost:8080/api/search-characters?value=${searchState.toLowerCase()}`)
         setSearchResult(response?.data?.characters)
     }
 
     return (
-        <div className="searchbar-main w-[500px]">
+        <div className="searchbar-main w-[500px] mr-auto">
            <form onSubmit={handleSubmit}>
                 <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div className="relative">

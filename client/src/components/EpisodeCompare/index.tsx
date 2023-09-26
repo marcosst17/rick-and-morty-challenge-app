@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react'
 import CharacterCard from '../CharacterCard/index'
 import EpisodeList from './EpisodeList';
 
-function EpisodeCompareContainer({selectedCharacterOne, selectedCharacterTwo}:any) {
+/* function EpisodeCompareContainer({selectedCharacterOne, selectedCharacterTwo}:any) {
 
     const [combinedEpisodes, setCombinedEpisodes] = useState<any[]>([])
     
@@ -37,6 +37,7 @@ function EpisodeCompareContainer({selectedCharacterOne, selectedCharacterTwo}:an
                     selectedCharacterOne?.hasOwnProperty("id") &&
                     <div className='flex character-holder-episodes character-first'>
                         <CharacterCard 
+                            oneOrTwo="one"
                             key={selectedCharacterOne.id}
                             character={selectedCharacterOne}
                             opposite={selectedCharacterTwo}
@@ -61,6 +62,7 @@ function EpisodeCompareContainer({selectedCharacterOne, selectedCharacterTwo}:an
                     selectedCharacterTwo?.hasOwnProperty("id") &&
                     <div className='flex character-holder-episodes flex-row-reverse'>
                         <CharacterCard 
+                            oneOrTwo="two"
                             key={selectedCharacterTwo.id * 4}
                             character={selectedCharacterTwo}
                             opposite={selectedCharacterOne}
@@ -69,6 +71,36 @@ function EpisodeCompareContainer({selectedCharacterOne, selectedCharacterTwo}:an
                     </div>
                 }
             </div>
+        </div>
+    )
+    
+    
+} */
+
+function EpisodeCompareContainer({selectedCharacter, opposite, handleUnselect, oneOrTwo}:any) {
+
+    return (
+        <div className='sticky top-0'  key={selectedCharacter?.id}>
+            {
+                selectedCharacter?.hasOwnProperty("id") ?
+                <>
+                    <div className='compare-delete flex items-center justify-center hover:scale-105'>
+                        <button className='text-gray-300 underline' onClick={handleUnselect}>Select another character</button>
+                    </div>
+                    <div className='flex character-holder-episodes'>
+                        <CharacterCard 
+                            where="compare"
+                            oneOrTwo={oneOrTwo}
+                            key={selectedCharacter.id}
+                            character={selectedCharacter}
+                            opposite={opposite}
+                        />
+                        <p className='font-bold text-white underline mb-6 mt-4'>Character Episodes: </p>
+                        <EpisodeList character={selectedCharacter} />
+                    </div>
+                </>
+                : <></>
+            }
         </div>
     )
     
