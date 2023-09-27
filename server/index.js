@@ -44,7 +44,7 @@ app.get("/api/get-characters-range", async (req, res) => {
         await mongoClient.connect()
         const database = mongoClient.db('rick_and_morty');
         const characters = database.collection('characters');
-        const found = await characters.find().limit(120).toArray();
+        const found = await characters.find().limit(36).toArray();
         res.json({characters: found})
     } finally {
         await mongoClient.close();

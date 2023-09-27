@@ -19,7 +19,7 @@ function App({characters}:any) {
 
 export async function getStaticProps () {
     const response = await axios.get("https://rick-and-morty-rest-marcosst17.vercel.app/api/get-all-characters")
-    // const response = await axios.get("http://localhost:8080/api/get-characters-range")
+    // const response = await axios.get("https://rick-and-morty-rest-marcosst17.vercel.app/api/get-characters-range")
     return {
       props: {
         characters: response.data.characters
