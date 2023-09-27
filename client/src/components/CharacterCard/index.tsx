@@ -45,10 +45,10 @@ function CharacterCard({character, selectedCharacter, opposite, oneOrTwo, where,
 
   return (
     // <div className={`card-label character-card relative max-w-xs rounded overflow-hidden shadow-lg m-4 ${checked ? "checked" : "not-checked"}`}>
-      <label className={`card-label character-card relative max-w-xs rounded overflow-hidden shadow-lg m-4 ${checked ? "checked" : "not-checked"}`} htmlFor={`check${oneOrTwo === "one" ? id : id + "b"}`} aria-disabled={opposite?.id === id ? true : false}>
+      <label className={`card-label character-card status-${character.status} relative max-w-xs rounded overflow-hidden shadow-lg m-4 ${checked ? "checked" : "not-checked"}`} htmlFor={`check${oneOrTwo === "one" ? id : id + "b"}`} aria-disabled={opposite?.id === id ? true : false}>
         <div className='card-label-inner'>
           <Image className="w-full character-avatar" src={image} alt={name} width={300} height={300} priority />
-          <div className="card-description-container py-2 text-center">
+          <div className="card-description-container flex-col py-2 text-center">
             <p className="name-container">{name}</p>
             {
               where === "compare" &&
@@ -82,7 +82,7 @@ function CharacterCard({character, selectedCharacter, opposite, oneOrTwo, where,
             </div>
           }
         </div>
-        {(() => {
+        {/* {(() => {
             if (status === 'Dead') {
               return (
                 <div className="absolute top-[5px] left-[10px]">
@@ -114,7 +114,7 @@ function CharacterCard({character, selectedCharacter, opposite, oneOrTwo, where,
                 </div>
               )
             }
-        })()}
+        })()} */}
       </label>
     // </div>
   )

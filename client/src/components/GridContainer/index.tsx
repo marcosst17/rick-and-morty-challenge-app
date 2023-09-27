@@ -1,6 +1,6 @@
 import axios from '@/node_modules/axios/index';
 import Image from 'next/image';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import CharacterCard from '../CharacterCard/index'
 import CombinedEpisodes from '../EpisodeCompare/CombinedEpisodes';
 import EpisodeCompareContainer from '../EpisodeCompare/index';
@@ -8,6 +8,7 @@ import FilterBy from '../FilterBy/index';
 import SearchBar from '../SearchBar/index';
 import Pagination from './Pagination';
 import logo from "@/public/assets/rick-morty-logo.png"
+import { CSSTransition } from 'react-transition-group';
 
 
 function GridContainer({setSelectedCharacterOne, setSelectedCharacterTwo, selectedCharacterOne, selectedCharacterTwo, completeList}:any) {
@@ -28,10 +29,12 @@ function GridContainer({setSelectedCharacterOne, setSelectedCharacterTwo, select
     const handleSelectCharacterOne = (key:any) => {
         let char = completeList.find((el:any) => el.id === key)
         setSelectedCharacterOne(char)
+        setFilterConditionOne("all")
     }
     const handleSelectCharacterTwo = (key:any) => {
         let char = completeList.find((el:any) => el.id === key)
         setSelectedCharacterTwo(char)
+        setFilterConditionTwo("all")
     }
     const handleUnselectCharacterOne = () => {
         setSelectedCharacterOne({empty: true})
@@ -142,12 +145,12 @@ function GridContainer({setSelectedCharacterOne, setSelectedCharacterTwo, select
 
     return (
         <div className="flex flex-row justify-between">
-            <div className={`character-first-grid border-r-2 py-4 ${selectedCharacterOne.hasOwnProperty("id") ? "compare-open-first" : "compare-closed-first"}`}>
+            <div className={`character-first-grid py-4 ${selectedCharacterOne.hasOwnProperty("id") ? "compare-open-first" : "compare-closed-first"} ${selectedCharacterOne.hasOwnProperty("id") && selectedCharacterTwo.hasOwnProperty("id") ? "combined-open-left" : "combined-closed-left"}`}>
                 <EpisodeCompareContainer oneOrTwo="one" handleUnselect={handleUnselectCharacterOne} selectedCharacter={selectedCharacterOne} opposite={selectedCharacterTwo} />
                 {
                     selectedCharacterOne?.hasOwnProperty("empty") &&
                     <>
-                        <div className="character-first-filters flex items-center flex-row mb-4 gap-[6rem]">
+                        <div className="character-first-filters flex items-center flex-row mb-4">
                             <SearchBar 
                                 setIsSearched={setIsSearchedOne} 
                                 isSearched={isSearchedOne} 
@@ -180,31 +183,30 @@ function GridContainer({setSelectedCharacterOne, setSelectedCharacterTwo, select
                             <Pagination 
                                 pageNumber={pageNumberOne}
                                 setPageNumber={setPageNumberOne}
-                                totalPages={shownCharactersOne?.completeList?.length / 12}
+                                totalPages={Math.ceil(shownCharactersOne?.completeList?.length / 12)}
                             />
                         </div>
                     </>
                 }
                 
             </div>
-            <div className='combined-grid py-48'>
+            <div className={`combined-grid pb-4 justify-center flex flex-col pt-48 ${selectedCharacterOne.hasOwnProperty("id") && selectedCharacterTwo.hasOwnProperty("id") ? "combined-open" : "combined-closed"}`}>
                 <Image
-                    className="absolute top-10 left-1/2 transform -translate-x-1/2 "
+                    className="absolute rick-logo left-1/2 transform -translate-x-1/2 "
                     src={logo}
-                    width={350}
+                    width={275}
                     height={400}
                     alt=""
                     priority
                 />
-                <h1>MIDDLE</h1>
                 <CombinedEpisodes selectedCharacterOne={selectedCharacterOne} selectedCharacterTwo={selectedCharacterTwo} />
             </div>
-            <div className={`character-second-grid border-l-2 py-4 ${selectedCharacterTwo.hasOwnProperty("id") ? "compare-open-second" : "compare-closed-second"}`}>
+            <div className={`character-second-grid py-4 ${selectedCharacterTwo.hasOwnProperty("id") ? "compare-open-second" : "compare-closed-second"} ${selectedCharacterOne.hasOwnProperty("id") && selectedCharacterTwo.hasOwnProperty("id") ? "combined-open-right" : "combined-closed-right"}`}>
                 <EpisodeCompareContainer oneOrTwo="two" handleUnselect={handleUnselectCharacterTwo} selectedCharacter={selectedCharacterTwo} opposite={selectedCharacterOne} />
                 {
                     selectedCharacterTwo.hasOwnProperty("empty") && 
                     <>
-                        <div className="character-second-filters flex items-center flex-row-reverse mb-4 gap-[6rem]">
+                        <div className="character-second-filters flex items-center flex-row-reverse mb-4">
                             <SearchBar 
                                 setIsSearched={setIsSearchedTwo} 
                                 isSearched={isSearchedTwo} 
@@ -237,7 +239,7 @@ function GridContainer({setSelectedCharacterOne, setSelectedCharacterTwo, select
                             <Pagination 
                                 pageNumber={pageNumberTwo}
                                 setPageNumber={setPageNumberTwo}
-                                totalPages={shownCharactersTwo?.completeList?.length / 12}
+                                totalPages={Math.ceil(shownCharactersTwo?.completeList?.length / 12)}
                             />
                         </div>
                     </>

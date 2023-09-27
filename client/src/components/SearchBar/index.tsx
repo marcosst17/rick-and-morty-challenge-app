@@ -26,8 +26,8 @@ const SearchBar = ({setSearchedValue, setIsSearched, isSearched, searchedValue, 
     }
 
     return (
-        <div className="searchbar-main w-[500px] mr-auto">
-           <form onSubmit={handleSubmit}>
+        <div className="searchbar-main mr-auto ml-auto flex gap-2">
+           <form className="w-[400px]" onSubmit={handleSubmit}>
                 <label htmlFor="default-search" className="mb-2 text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                 <div className="relative">
                     <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -35,17 +35,17 @@ const SearchBar = ({setSearchedValue, setIsSearched, isSearched, searchedValue, 
                             <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
                         </svg>
                     </div>
-                    <input placeholder="Search a character" onChange={handleSearchInput} value={searchState} type="search" id="default-search" className="block w-full p-4 pl-10 text-sm text-gray-900 border border-gray-300 rounded-lg bg-gray-50 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required />
-                    <button type="submit" className="text-white absolute right-2.5 bottom-2.5 bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-4 py-2 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Search</button>
+                    <input placeholder="Search a character" onChange={handleSearchInput} value={searchState} type="search" id="default-search" className="capitalize block w-full p-4 pl-10 text-sm text-gray-900 border rounded-lg bg-gray-50 bg-gray-700 border-gray-600 placeholder-gray-400 text-white focus:ring-blue-500 focus:border-blue-500" required />
+                    <button type="submit" className="text-black absolute right-2.5 bottom-2.5 bg-[#ecd06f] hover:bg-[#ecb03a] focus:ring-4 focus:outline-none focus:ring-[#ecb03a] font-medium rounded-lg text-sm px-4 py-2 focus:ring-blue-800">Search</button>
                 </div>
             </form>
             {
                 isSearched ? 
-                <div>
-                    <p>
+                <div className="flex flex-row items-center rounded-2xl px-4 gap-2 bg-gray-700 border-gray-600 border-[1px]">
+                    <p className="capitalize text-gray-400">
                         {searchedValue}
                     </p>
-                    <button onClick={handleSearchReset}>
+                    <button onClick={handleSearchReset} className="text-[#ecd06f] hover:text-[#ecb03a] font-bold">
                         X
                     </button>
                 </div> 
