@@ -16,15 +16,10 @@ function CharacterCard({character, selectedCharacter, opposite, oneOrTwo, where,
   const { id, status, image, name, species, origin, location } = character
 
   const handleSelectCharacterData = (e:any) => {
-    console.log("e.target: ", e.target);
-    console.log("e.target.checked: ", e.target.checked)
     if(e.target.checked && handleSelectCharacter){
-      console.log("first if")
       handleSelectCharacter(id)
     } else {
-      console.log("else");
       if(handleUnselectCharacter){
-        console.log("second if")
         handleUnselectCharacter(id)
         setChecked(false)
       }
@@ -44,8 +39,7 @@ function CharacterCard({character, selectedCharacter, opposite, oneOrTwo, where,
   }, [selectedCharacter, character.id])
 
   return (
-    // <div className={`card-label character-card relative max-w-xs rounded overflow-hidden shadow-lg m-4 ${checked ? "checked" : "not-checked"}`}>
-      <label className={`card-label character-card status-${character.status} relative max-w-xs rounded overflow-hidden shadow-lg m-2 ${checked ? "checked" : "not-checked"}`} htmlFor={`check${oneOrTwo === "one" ? id : id + "b"}`} aria-disabled={opposite?.id === id ? true : false}>
+      <label className={`card-label character-card status-${status} relative max-w-xs rounded overflow-hidden shadow-lg m-2 ${checked ? "checked" : "not-checked"}`} htmlFor={`check${oneOrTwo === "one" ? id : id + "b"}`} aria-disabled={opposite?.id === id ? true : false}>
         <div className='card-label-inner relative'>
           <Image className="w-full character-avatar" src={image} alt={name} width={250} height={250} priority />
           <div className="card-description-container flex-col py-2 text-center items-center">
@@ -120,7 +114,6 @@ function CharacterCard({character, selectedCharacter, opposite, oneOrTwo, where,
             }
         })()} */}
       </label>
-    // </div>
   )
 }
 

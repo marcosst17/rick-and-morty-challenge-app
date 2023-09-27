@@ -1,9 +1,6 @@
 import axios from '@/node_modules/axios/index'
-import EpisodeCompareContainer from '@/src/components/EpisodeCompare/index';
-import GridContainer from '@/src/components/GridContainer/index';
 import HomePage from '@/src/components/HomePage/index';
-import SearchBar from '@/src/components/SearchBar/index';
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 function App({characters}:any) {
 

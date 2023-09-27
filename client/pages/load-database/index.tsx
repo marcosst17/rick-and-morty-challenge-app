@@ -1,11 +1,10 @@
 import axios from '@/node_modules/axios/index'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 
 function LoadDatabase({data, allCharacters}:any) {
 
   const handleCharacterLoad = async () => {
-    console.log("Test");
-    const response1 = await axios.post("http://localhost:8080/api/mongo/load-characters", {allCharacters})
+    await axios.post("http://localhost:8080/api/mongo/load-characters", {allCharacters})
   }
 
   return (

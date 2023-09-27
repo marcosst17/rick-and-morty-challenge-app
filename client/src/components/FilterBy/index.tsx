@@ -18,7 +18,6 @@ function FilterBy({setFilterCondition}:any) {
           <option value="status:alive">Alive</option>
           <option value="status:dead">Dead</option>
           <option value="status:unknown">Unknown</option>
-          {/* Add more options as needed */}
         </select>
         <span className="focus"></span>
       </div>

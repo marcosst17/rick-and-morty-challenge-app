@@ -1,20 +1,10 @@
-import { PaginationProps } from '@/types/types'
-import React, { useEffect, useState } from 'react'
+import React from 'react'
 import ReactPaginate from 'react-paginate'
 
-function Pagination ({ pageNumber, totalPages, setPageNumber }: PaginationProps) {
+function Pagination ({ pageNumber, totalPages, setPageNumber }:any) {
   const pageChange = (data: { selected: number }) => {
     setPageNumber(data.selected + 1)
   }
-
-  /* const [width, setWidth] = useState(window.innerWidth)
-  const updateDimensions = () => {
-    setWidth(window.innerWidth)
-  }
-  useEffect(() => {
-    window.addEventListener('resize', updateDimensions)
-    return () => window.removeEventListener('resize', updateDimensions)
-  }, []) */
 
   return (
     <div className="flex justify-center">

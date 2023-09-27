@@ -4,14 +4,8 @@ import React, { useEffect, useState } from 'react'
 function EpisodeList({character}:any) {
 
     const [episodeState, setEpisodeState] = useState<any[]>([])
-    const [fetched, setFetched] = useState(false)
 
     useEffect(() => {
-        console.log({episodeState})
-    }, [episodeState])
-
-    useEffect(() => {
-        console.log({character});
         if(character.episode.length > 0){
             character.episode.forEach( async (episode:any) => {
                 let response = await axios.get(episode)

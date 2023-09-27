@@ -1,6 +1,5 @@
-import axios from '@/node_modules/axios/index';
 import Image from 'next/image';
-import React, { useEffect, useState, useRef } from 'react'
+import React, { useEffect, useState } from 'react'
 import CharacterCard from '../CharacterCard/index'
 import CombinedEpisodes from '../EpisodeCompare/CombinedEpisodes';
 import EpisodeCompareContainer from '../EpisodeCompare/index';
@@ -8,7 +7,6 @@ import FilterBy from '../FilterBy/index';
 import SearchBar from '../SearchBar/index';
 import Pagination from './Pagination';
 import logo from "@/public/assets/rick-morty-logo.png"
-import { CSSTransition } from 'react-transition-group';
 
 
 function GridContainer({setSelectedCharacterOne, setSelectedCharacterTwo, selectedCharacterOne, selectedCharacterTwo, completeList}:any) {
@@ -61,14 +59,12 @@ function GridContainer({setSelectedCharacterOne, setSelectedCharacterTwo, select
         
             case "status:alive":
                 let filteredAlive = completeList.filter((el:any) => el.status === "Alive")
-                console.log({filteredAlive});
                 setShownCharactersOne({completeList: filteredAlive, paginated: filteredAlive.slice(0, 12), from: 0, to: 12})
                 setPageNumberOne(1)
                 break;
         
             case "status:dead":
                 let filteredDead = completeList.filter((el:any) => el.status === "Dead")
-                console.log({filteredDead})
                 setShownCharactersOne({completeList: filteredDead, paginated: filteredDead.slice(0, 12), from: 0, to: 12})
                 setPageNumberOne(1)
                 break;
@@ -105,14 +101,12 @@ function GridContainer({setSelectedCharacterOne, setSelectedCharacterTwo, select
         
             case "status:alive":
                 let filteredAlive = completeList.filter((el:any) => el.status === "Alive")
-                console.log({filteredAlive});
                 setShownCharactersTwo({completeList: filteredAlive, paginated: filteredAlive.slice(0, 12), from: 0, to: 12})
                 setPageNumberTwo(1)
                 break;
         
             case "status:dead":
                 let filteredDead = completeList.filter((el:any) => el.status === "Dead")
-                console.log({filteredDead})
                 setShownCharactersTwo({completeList: filteredDead, paginated: filteredDead.slice(0, 12), from: 0, to: 12})
                 setPageNumberTwo(1)
                 break;

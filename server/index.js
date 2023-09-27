@@ -3,7 +3,7 @@ require('dotenv').config();
 const express = require("express");
 const app = express()
 const cors = require("cors")
-const PORT = 8080;
+const PORT = process.env.PORT || 8080;
 const mongoUri = process.env.DB_CONNECTION_STRING
 const mongoClient = new MongoClient(mongoUri);
 
@@ -25,16 +25,11 @@ app.get("/api/get-all-characters", async (req, res) => {
 
 app.get("/api/search-characters", async (req, res) => {
     console.log(`GET /api/search-characters`)
-    console.log("params", req.params)
-    console.log("body", req.body)
-    console.log("path", req.path)
-    console.log("query", req.query)
     const { value } = req.query
     try {
         await mongoClient.connect()
         const database = mongoClient.db('rick_and_morty');
         const characters = database.collection('characters');
-        // const query = {name: new RegExp('/.*' + "rick" + '.*/i')}
         const query = {name: {"$regex": '.*' + value + '.*', "$options": "i"}}
         const found = await characters.find(query).toArray();
         res.json({characters: found})
