@@ -21,7 +21,7 @@ const SearchBar = ({setSearchedValue, setIsSearched, isSearched, searchedValue, 
         setSearchedValue(searchState.toLowerCase())
         setIsSearched(true)
         setSearchState("")
-        const response = await axios.get(`http://localhost:8080/api/search-characters?value=${searchState.toLowerCase()}`)
+        const response = await axios.get(`https://rick-and-morty-rest-marcosst17.vercel.app/api/search-characters?value=${searchState.toLowerCase()}`)
         setSearchResult(response?.data?.characters)
     }
 
