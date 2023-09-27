@@ -160,7 +160,7 @@ function GridContainer({setSelectedCharacterOne, setSelectedCharacterTwo, select
                             />
                             <FilterBy setFilterCondition={setFilterConditionOne} />
                         </div>
-                        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1 mb-4">
+                        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-4">
                             {   
                                 shownCharactersOne?.completeList?.length > 0 ?
                                 shownCharactersOne.paginated.map((el:any) => {
@@ -216,7 +216,7 @@ function GridContainer({setSelectedCharacterOne, setSelectedCharacterTwo, select
                             />
                             <FilterBy setFilterCondition={setFilterConditionTwo} />
                         </div>
-                        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-1 mb-4">
+                        <div className="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 mb-4">
                             {
                                 shownCharactersTwo?.completeList?.length > 0 ?
                                 shownCharactersTwo.paginated.map((el:any) => {

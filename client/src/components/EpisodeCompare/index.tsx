@@ -96,7 +96,7 @@ function EpisodeCompareContainer({selectedCharacter, opposite, handleUnselect, o
                             character={selectedCharacter}
                             opposite={opposite}
                         />
-                        <p className='font-bold text-white mb-6 mt-4'>{`Character #${oneOrTwo === "one" ? "1" : "2"} Episodes: `}</p>
+                        <p className='font-bold text-[#ecb03a] mb-6 mt-4'>{`Character #${oneOrTwo === "one" ? "1" : "2"} Episodes: `}</p>
                         <EpisodeList character={selectedCharacter} />
                     </div>
                 </>

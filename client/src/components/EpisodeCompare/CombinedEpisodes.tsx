@@ -27,20 +27,20 @@ function CombinedEpisodes({selectedCharacterOne, selectedCharacterTwo}:any) {
     if (selectedCharacterOne?.hasOwnProperty("empty") || selectedCharacterTwo?.hasOwnProperty("empty")){
         return (
             <div className="absolute w-[20%] flex flex-col items-center text-center px-2">
-                <h4 className="text-xl font-semibold text-white mb-4">INFORMATION</h4>
-                <p className="mb-2">See in what episodes your favorite Rick & Morty characters appear.</p>
-                <p>Select one from each grid to see the list of episodes that have both characters!</p>
-                <p className="mt-6">Character status:</p>
-                <p className="text-[#00ff00]">Green = Alive</p>
-                <p className="text-[#3c3cdf]">Blue = Unknown</p>
-                <p className="text-[#ff0000]">Red = Dead</p>
+                <h4 className="text-xl font-semibold text-[#ecb03a] mb-4">INFORMATION</h4>
+                <p className="mb-2 text-[#ecd06f]">See in what episodes your favorite Rick & Morty characters appear.</p>
+                <p className="text-[#ecd06f]">Select one from each grid to see the list of episodes that have both characters!</p>
+                <p className="mt-6 text-[#ecb03a] mb-2">Character status:</p>
+                <p className="text-[#00ff00] font-bold">● Alive</p>
+                <p className="text-[#3c3cdf] font-bold">● Unknown</p>
+                <p className="text-[#ff0000] font-bold">● Dead</p>
             </div>
         )
     }
 
     return (
         <>
-            <p className='font-bold text-white text-center mb-6 mt-4'>{`Combined Episodes: `}</p>
+            <p className='font-bold text-[#ecb03a] text-center mb-6 mt-4'>Both appear on:</p>
             <div className={`px-8 relative ${selectedCharacterOne?.hasOwnProperty("id") && selectedCharacterTwo?.hasOwnProperty("id") && combinedEpisodes.length > 0 ? "episode-list-container" : ""}`}>
                 {
                     selectedCharacterOne?.hasOwnProperty("id") && selectedCharacterTwo?.hasOwnProperty("id") && combinedEpisodes.length > 0 &&
