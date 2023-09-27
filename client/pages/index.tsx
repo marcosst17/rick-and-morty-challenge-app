@@ -1,3 +1,4 @@
+"use-client"
 import axios from 'axios'
 import HomePage from '../src/components/HomePage/index';
 import React from 'react'
