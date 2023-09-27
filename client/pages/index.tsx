@@ -1,5 +1,5 @@
-import axios from '@/node_modules/axios/index'
-import HomePage from '@/src/components/HomePage/index';
+import axios from 'axios'
+import HomePage from '../src/components/HomePage/index';
 import React from 'react'
 
 function App({characters}:any) {

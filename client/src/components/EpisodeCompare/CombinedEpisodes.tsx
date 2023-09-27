@@ -1,4 +1,4 @@
-import axios from "@/node_modules/axios/index"
+import axios from "axios"
 import { useEffect, useState } from "react"
 
 function CombinedEpisodes({selectedCharacterOne, selectedCharacterTwo}:any) {

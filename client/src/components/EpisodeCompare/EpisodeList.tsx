@@ -1,4 +1,4 @@
-import axios from '@/node_modules/axios/index'
+import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
 function EpisodeList({character}:any) {

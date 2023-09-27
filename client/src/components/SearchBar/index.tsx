@@ -1,5 +1,5 @@
 "use client"
-import axios from "@/node_modules/axios/index"
+import axios from "axios"
 import { useState } from "react"
 
 const SearchBar = ({setSearchedValue, setIsSearched, isSearched, searchedValue, setSearchResult}:any) => {
