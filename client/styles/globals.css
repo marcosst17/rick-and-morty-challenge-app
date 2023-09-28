@@ -18,204 +18,39 @@ body {
   background: linear-gradient(to left, #0f0c29, #302b63, #24243e);
 }
 
+/* FILTERS */
+
 .character-first-filters {
   justify-content: space-around;
 }
+
 .character-first-grid .searchbar-main {
   margin-left: auto;
 }
+
 .character-first-grid .filterby-main {
   margin-right: auto;
   display: flex;
   flex-direction: row;
 }
+
 .character-first-grid .filterby-main select {
   margin-left: 0 !important;
 }
-.character-first-grid .card-description-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
+
 .character-second-grid .filterby-main {
   margin-left: auto;
   display: flex;
   flex-direction: row-reverse;
 }
+
 .character-second-grid .filterby-main select {
   margin-left: 0 !important;
 }
+
 .character-second-grid .searchbar-main {
   margin-right: auto;
   flex-direction: row-reverse;
-}
-.character-second-grid .card-description-container {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.character-first-grid,
-.character-second-grid {
-  /* transition: width 1s ease-out; */
-  width: 40%;
-}
-
-.combined-grid {
-  width: 20%;
-}
-
-.combined-open {
-  width: 35%;
-}
-
-.episode-container {
-  background: lightblue;
-  z-index: 2;
-  position: fixed;
-  bottom: 0;
-  width: 100%;
-  height: 40%;
-}
-
-/* .episode-container .character-card {
-  transform: scale(0.6);
-} */
-
-.episode-container .character-holder-episodes {
-  overflow-y: auto;
-}
-
-.character-holder-episodes {
-  align-items: center;
-  flex-direction: column;
-}
-
-.character-holder-episodes .card-label.status-Alive {
-  min-width: 500px;
-  box-shadow: inset 0px 0px 140px -10px var(--card-background-alive);
-}
-.character-holder-episodes .card-label.status-Dead {
-  min-width: 500px;
-  box-shadow: inset 0px 0px 140px -10px var(--card-background-dead);
-}
-.character-holder-episodes .card-label.status-unknown {
-  min-width: 500px;
-  box-shadow: inset 0px 0px 140px -10px var(--card-background-unknown);
-}
-
-.character-holder-episodes .card-label-inner {
-  display: flex;
-  height: 100%;
-}
-
-.episode-list-container {
-  overflow-y: auto;
-  max-height: 500px;
-  min-height: 500px;
-}
-
-.combined-open .episode-list-container {
-  max-height: 500px;
-}
-
-/* .compare-open-first {
-  width: 30% !important;
-} */
-
-.combined-open-left {
-  width: 30% !important;
-  transition: width 1s ease-out;
-  margin-right: auto;
-}
-.combined-open-right {
-  width: 30% !important;
-  transition: width 1s ease-out;
-  margin-left: auto;
-}
-.combined-closed-right {
-  transition: width 0.5s ease-out;
-}
-.combined-closed-left {
-  transition: width 0.5s ease-out;
-}
-.combined-open {
-  justify-content: flex-end;
-}
-
-.selector-disabled {
-  pointer-events:none;
-}
-
-.checked {
-  box-shadow: inset 0px 0px 140px -10px var(--card-background-color);
-}
-.card-label[aria-disabled=true] {
-  pointer-events: none;
-  box-shadow: 0px 0px 10px 3px var(--card-background-color-disabled);
-}
-
-.card-label[aria-disabled=false] {
-  cursor: pointer;
-}
-
-.card-label {
-  /* min-height: 450px; */
-  max-height: 400px;
-  background: rgb(231 231 231);
-  border-radius: 15px;
-  transition: all 0.7s ease-out;
-  box-shadow: none;
-}
-
-.card-label.status-Alive:hover {
-  box-shadow: inset 0px 0px 140px -10px var(--card-background-alive);
-  color: #1c861c;
-  -webkit-text-stroke-width: 0.3px;
-  -webkit-text-stroke-color: rgb(75, 75, 75);
-}
-.card-label.status-unknown:hover {
-  box-shadow: inset 0px 0px 140px -10px var(--card-background-unknown);
-  color: #0000ff;
-  -webkit-text-stroke-width: 0.3px;
-  -webkit-text-stroke-color: rgb(75, 75, 75);
-}
-.card-label.status-Dead:hover {
-  box-shadow: inset 0px 0px 140px -10px var(--card-background-dead);
-  color: #ff0000;
-  -webkit-text-stroke-width: 0.5px;
-  -webkit-text-stroke-color: black;
-}
-
-.card-description-container {
-  min-height: 64px;
-}
-
-.character-holder-episodes .card-label {
-  pointer-events: none;
-}
-
-.character-holder-episodes .card-label .card-description-container{
-  min-width: 300px !important;
-}
-.character-holder-episodes .card-label .card-description-container .name-container{
-  font-weight: 700;
-  font-size: 20px;
-}
-
-.character-avatar {
-  overflow: hidden;
-  transition: transform 0.2s linear;
-}
-
-.character-avatar:hover {
-  transform: scale(1.05);
-}
-
-.compare-delete {
-  transition: transform 0.2s linear;
-  width: 50%;
-  margin: auto;
 }
 
 select {
@@ -263,9 +98,199 @@ select,
   grid-area: select;
 }
 
+/* GRID AND CARDS*/
+
+.character-first-grid .card-description-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.character-second-grid .card-description-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.character-first-grid,
+.character-second-grid {
+  width: 40%;
+}
+
+.combined-grid {
+  width: 20%;
+}
+
+.combined-open {
+  width: 35%;
+}
+
+.selector-disabled {
+  pointer-events:none;
+}
+
+.checked {
+  box-shadow: inset 0px 0px 140px -10px var(--card-background-color);
+}
+
+.card-label[aria-disabled=true] {
+  pointer-events: none;
+  box-shadow: 0px 0px 10px 3px var(--card-background-color-disabled);
+}
+
+.card-label[aria-disabled=false] {
+  cursor: pointer;
+}
+
+.card-label {
+  max-height: 400px;
+  background: rgb(231 231 231);
+  border-radius: 15px;
+  transition: all 0.7s ease-out;
+  box-shadow: none;
+}
+
+.card-label.status-Alive:hover {
+  box-shadow: inset 0px 0px 140px -10px var(--card-background-alive);
+  color: #1c861c;
+  -webkit-text-stroke-width: 0.3px;
+  -webkit-text-stroke-color: rgb(75, 75, 75);
+}
+
+.card-label.status-unknown:hover {
+  box-shadow: inset 0px 0px 140px -10px var(--card-background-unknown);
+  color: #0000ff;
+  -webkit-text-stroke-width: 0.3px;
+  -webkit-text-stroke-color: rgb(75, 75, 75);
+}
+
+.card-label.status-Dead:hover {
+  box-shadow: inset 0px 0px 140px -10px var(--card-background-dead);
+  color: #ff0000;
+  -webkit-text-stroke-width: 0.5px;
+  -webkit-text-stroke-color: black;
+}
+
+.card-description-container {
+  min-height: 64px;
+}
+
+.character-holder-episodes .card-label {
+  pointer-events: none;
+}
+
+.character-holder-episodes .card-label .card-description-container{
+  min-width: 300px !important;
+}
+.character-holder-episodes .card-label .card-description-container .name-container{
+  font-weight: 700;
+  font-size: 20px;
+}
+
+.name-container {
+  min-height: 48px;
+}
+
+.character-avatar {
+  overflow: hidden;
+  transition: transform 0.2s linear;
+}
+
+.character-avatar:hover {
+  transform: scale(1.05);
+}
+
+/* EPISODE LIST */ 
+
+.episode-container {
+  background: lightblue;
+  z-index: 2;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 40%;
+}
+
+.episode-container .character-holder-episodes {
+  overflow-y: auto;
+}
+
+.character-holder-episodes {
+  align-items: center;
+  flex-direction: column;
+}
+
+.character-holder-episodes .card-label.status-Alive {
+  min-width: 500px;
+  box-shadow: inset 0px 0px 140px -10px var(--card-background-alive);
+}
+
+.character-holder-episodes .card-label.status-Dead {
+  min-width: 500px;
+  box-shadow: inset 0px 0px 140px -10px var(--card-background-dead);
+}
+
+.character-holder-episodes .card-label.status-unknown {
+  min-width: 500px;
+  box-shadow: inset 0px 0px 140px -10px var(--card-background-unknown);
+}
+
+.character-holder-episodes .card-label-inner {
+  display: flex;
+  height: 100%;
+}
+
+.episode-list-container {
+  overflow-y: auto;
+  max-height: 500px;
+  min-height: 500px;
+}
+
+.combined-open .episode-list-container {
+  max-height: 500px;
+}
+
+.combined-open-left {
+  width: 30% !important;
+  transition: width 1s ease-out;
+  margin-right: auto;
+}
+
+.combined-open-left .card-label,
+.combined-open-right .card-label {
+  max-width: 100% !important;
+  min-width: unset !important;
+  padding: 0 !important;
+}
+
+.combined-open-right {
+  width: 30% !important;
+  transition: width 1s ease-out;
+  margin-left: auto;
+}
+
+.combined-closed-right {
+  transition: width 0.5s ease-out;
+}
+
+.combined-closed-left {
+  transition: width 0.5s ease-out;
+}
+
+.combined-open {
+  justify-content: flex-end;
+}
+
+.compare-delete {
+  transition: transform 0.2s linear;
+  width: 50%;
+  margin: auto;
+}
+
 .combined-open .rick-logo {
   top: 150px;
 }
+
 .rick-logo {
   top: 150px;
 }
@@ -273,13 +298,12 @@ select,
 .episodeCompareTransition-enter {
   transform: translateX(100%);
 }
+
 .episodeCompareTransition-enter-active {
   transform: translateX(0%);
   transition: transform 500ms ease-out;
 }
-/* .episodeCompareTransition-exit {
-  transform: translateX(100%);
+
+.break {
+  color: white;
 }
-.episodeCompareTransition-exit-active {
-  transform: translateX(100%);
-} */

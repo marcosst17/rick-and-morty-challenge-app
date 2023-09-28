@@ -31,9 +31,15 @@ function CombinedEpisodes({selectedCharacterOne, selectedCharacterTwo}:any) {
                 <p className="mb-2 text-[#ecd06f]">See in what episodes your favorite Rick & Morty characters appear.</p>
                 <p className="text-[#ecd06f]">Select one from each grid to see the list of episodes that have both characters!</p>
                 <p className="mt-6 text-[#ecb03a] mb-2">Character status:</p>
-                <p className="text-[#00ff00] font-bold">● Alive</p>
-                <p className="text-[#3c3cdf] font-bold">● Unknown</p>
-                <p className="text-[#ff0000] font-bold">● Dead</p>
+                <div className="bg-[#e7e7e7] rounded-lg mb-2 p-2">
+                    <p className="text-[#1fb31f] font-bold">● Alive</p>
+                </div>
+                <div className="bg-[#e7e7e7] rounded-lg mb-2 p-2">
+                    <p className="text-[#0e0ed9] font-bold">● Unknown</p>
+                </div>
+                <div className="bg-[#e7e7e7] rounded-lg mb-2 p-2">
+                    <p className="text-[#cf0707] font-bold">● Dead</p>
+                </div>
             </div>
         )
     }
