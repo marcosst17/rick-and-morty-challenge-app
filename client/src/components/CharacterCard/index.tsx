@@ -45,9 +45,16 @@ function CharacterCard({character, selectedCharacter, opposite, oneOrTwo, where,
           <div className="card-description-container flex-col py-2 text-center items-center">
             {
               where !== "compare" && 
-              <p className="name-container absolute top-0 bg-slate-300 w-full italic text-sm text-black">{species}</p>
+              <p className="absolute top-0 bg-slate-300 w-full italic text-sm text-black">{species}</p>
             }
             <p className="name-container">{name}</p>
+            {
+              where !== "compare" &&
+              <div className="flex items-center gap-[.5rem] mt-1">
+                <div className={`animate-bounce absolute inline-flex h-1 w-16 rounded-full ${status === "Alive" ? "bg-green-400" : status === "Dead" ? "bg-red-400" : "bg-blue-400"} opacity-75`} />
+                <div className={`relative inline-flex rounded-full h-0 w-16 ${status === "Alive" ? "bg-green-500" : status === "Dead" ? "bg-red-500" : "bg-blue-500"}`} />
+              </div>
+            }
             {
               where === "compare" &&
               <>
